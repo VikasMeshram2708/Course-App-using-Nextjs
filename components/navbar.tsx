@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Button } from "./button";
+import { Button } from "./ui/button";
 import { Video } from "lucide-react";
-import { ToggleMode } from "./toggle-mode";
-import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
+import { ToggleMode } from "./ui/toggle-mode";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export function Navbar() {
   const isAuthenticated = true;

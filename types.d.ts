@@ -1,9 +1,11 @@
 type Course = {
   id: string;
   title: string;
-  embededUrl: string;
+  embeddedUrl: string;
   description: string;
   duration: string;
   tags: string[];
   thumbnail: string;
+  creator: string;
+  author: string;
 };

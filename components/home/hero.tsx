@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { Button } from "../ui/button";
 
@@ -22,7 +23,7 @@ export function Hero() {
         </h1>
 
         {/* Subhead */}
-        <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-10">
+        <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-10">
           Only the most effective free courses – filtered by industry pros so
           you {"don't"}waste time on fluff.
         </p>
