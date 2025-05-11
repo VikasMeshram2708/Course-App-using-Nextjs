@@ -6,10 +6,18 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:gen": "prisma generate",
+    "db:mig": "prisma migrate dev",
+    "db:stu": "prisma studio",
+    "postinstall": "prisma generate",
+    "db:seed":"tsx ./prisma/seed.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
+    "@kinde-oss/kinde-auth-nextjs": "^2.6.2",
+    "@prisma/client": "6.7.0",
+    "@prisma/extension-accelerate": "^1.3.0",
     "@radix-ui/react-avatar": "^1.1.7",
     "@radix-ui/react-dialog": "^1.1.11",
     "@radix-ui/react-dropdown-menu": "^2.1.12",
@@ -22,12 +30,16 @@
     "lucide-react": "^0.507.0",
     "next": "15.3.1",
     "next-themes": "^0.4.6",
+    "prisma": "^6.7.0",
+    "razorpay": "^2.9.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.2",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
-    "zod": "^3.24.4"
+    "tsx": "^4.19.4",
+    "zod": "^3.24.4",
+    "zustand": "^5.0.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

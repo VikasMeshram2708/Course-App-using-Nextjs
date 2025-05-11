@@ -6,6 +6,7 @@
 
 ### ToDo
 
+- [ ] Change the SEO on layout
 - [x] Add Breadcrumbs
 - [x] Add Search Bar with debounce functionality
 - [x] Add Attribution of the Creator

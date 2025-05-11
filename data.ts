@@ -1,3 +1,5 @@
+import { Course } from "./types";
+
 export const courseSamples: Course[] = [
   {
     id: "c1e2f3a4b5",
@@ -11,6 +13,7 @@ export const courseSamples: Course[] = [
     thumbnail: "https://i.ytimg.com/vi/ftYmXoH0V5I/maxresdefault.jpg",
     creator: "CodeTV (formerly Learn With Jason)",
     author: "@codetv-dev",
+    price: "500",
   },
   {
     id: "d6g7h8j9k0",
@@ -24,6 +27,7 @@ export const courseSamples: Course[] = [
     thumbnail: "https://i.ytimg.com/vi_webp/X2sEoZG8EIw/maxresdefault.webp",
     creator: "CodeTV (formerly Learn With Jason)",
     author: "@codetv-dev",
+    price: "5500",
   },
   {
     id: "m1n2o3p4q5",
@@ -38,6 +42,7 @@ export const courseSamples: Course[] = [
     thumbnail: "https://i.ytimg.com/vi/h_noB1sI_e8/hqdefault.jpg",
     creator: "vindarel",
     author: "@vindarel",
+    price: "2500",
   },
   {
     id: "r6s7t8u9v0",
@@ -52,6 +57,7 @@ export const courseSamples: Course[] = [
     thumbnail: "https://i.ytimg.com/vi_webp/S8_e8kQ4jvg/maxresdefault.webp",
     creator: "Code Voyage with Iman",
     author: "@TheRealCodeVoyage",
+    price: "600",
   },
   {
     id: "w1x2y3z4a5",
@@ -65,5 +71,6 @@ export const courseSamples: Course[] = [
     thumbnail: "https://i.ytimg.com/vi/4UN8jzaAUS8/hqdefault.jpg",
     creator: "Ahmed Eldawy",
     author: "@EldawyUCR",
+    price: "900",
   },
 ];

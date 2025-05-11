@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserType {
+  USER
+  ADMIN
+}
+
+model User {
+  id      String   @id @default(uuid())
+  name    String
+  email   String   @unique
+  picture String?
+  role    UserType @default(USER)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  enrollment Enrollment[] // enrolled courses
+  orders     Order[] // user orders
+
+  @@index([email])
+}
+
+model Enrollment {
+  id       String @id @default(uuid())
+  userId   String
+  courseId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  User User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model Course {
+  id          String   @id @default(uuid())
+  title       String   @unique
+  description String
+  thumbnail   String
+  embeddedUrl String
+  duration    String
+  tags        String[]
+  creator     String
+  author      String
+  price       String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  FAILED
+}
+
+model Order {
+  id       String @id @default(uuid())
+  orderId  String @unique
+  courseId String
+  amount   String // Amount in paise
+  currency String @default("INR")
+  receipt  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  @@index([orderId, courseId])
+}

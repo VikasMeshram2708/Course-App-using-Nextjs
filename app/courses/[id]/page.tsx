@@ -10,20 +10,35 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Course } from "@/types";
+import prisma from "@/lib/prisma";
 
 type DetailedPageProps = {
   params: Promise<{ id: string }>;
 };
 
 export async function generateStaticParams() {
-  return courseSamples.map((course) => ({ id: course?.id }));
+  const courses: Course[] = await prisma.course.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    take: 10,
+  });
+
+  return courses.map((course) => ({
+    id: course?.id,
+  }));
 }
 
 export async function generateMetadata({
   params,
 }: DetailedPageProps): Promise<Metadata> {
   const { id } = await params;
-  const course = courseSamples.find((course) => course.id === id);
+  const course = await prisma.course.findUnique({
+    where: {
+      id: id,
+    },
+  });
 
   return {
     title: course?.title,
