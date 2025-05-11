@@ -1,8 +1,8 @@
-## Course App
+# Course App
+
+## Live Link [https://course-app-using-nextjs.vercel.app]
 
 ### Before deploying to main production
-
-- [ ] Remove the console logs
 
 ### ToDo
 
@@ -18,4 +18,4 @@
 
 ### Stretch
 
-- [ ] Add Enroll Button
+- [ ] Subscription Based.
