@@ -14,11 +14,12 @@ enum UserType {
 }
 
 model User {
-  id      String   @id @default(uuid())
-  name    String
-  email   String   @unique
-  picture String?
-  role    UserType @default(USER)
+  id       String   @id @default(uuid())
+  name     String
+  email    String   @unique
+  picture  String?
+  tenantId String   @unique
+  role     UserType @default(USER)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -37,8 +38,9 @@ model Enrollment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  User User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [tenantId], onUpdate: Cascade, onDelete: Cascade)
 
+  @@unique([userId, courseId])
   @@index([userId])
 }
 
@@ -65,18 +67,20 @@ enum OrderStatus {
 }
 
 model Order {
-  id       String @id @default(uuid())
-  orderId  String @unique
+  id       String      @id @default(uuid())
+  orderId  String      @unique
   courseId String
   amount   String // Amount in paise
-  currency String @default("INR")
+  currency String      @default("INR")
   receipt  String
+  status   OrderStatus @default(PENDING)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  User   User?   @relation(fields: [userId], references: [id])
+  user   User?   @relation(fields: [userId], references: [tenantId], onUpdate: Cascade, onDelete: Cascade)
   userId String?
 
+  @@unique([userId, courseId]) // prevents duplicate orders
   @@index([orderId, courseId])
 }

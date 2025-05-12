@@ -1226,6 +1226,7 @@ export namespace Prisma {
     name: string | null
     email: string | null
     picture: string | null
+    tenantId: string | null
     role: $Enums.UserType | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -1236,6 +1237,7 @@ export namespace Prisma {
     name: string | null
     email: string | null
     picture: string | null
+    tenantId: string | null
     role: $Enums.UserType | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -1246,6 +1248,7 @@ export namespace Prisma {
     name: number
     email: number
     picture: number
+    tenantId: number
     role: number
     createdAt: number
     updatedAt: number
@@ -1258,6 +1261,7 @@ export namespace Prisma {
     name?: true
     email?: true
     picture?: true
+    tenantId?: true
     role?: true
     createdAt?: true
     updatedAt?: true
@@ -1268,6 +1272,7 @@ export namespace Prisma {
     name?: true
     email?: true
     picture?: true
+    tenantId?: true
     role?: true
     createdAt?: true
     updatedAt?: true
@@ -1278,6 +1283,7 @@ export namespace Prisma {
     name?: true
     email?: true
     picture?: true
+    tenantId?: true
     role?: true
     createdAt?: true
     updatedAt?: true
@@ -1361,6 +1367,7 @@ export namespace Prisma {
     name: string
     email: string
     picture: string | null
+    tenantId: string
     role: $Enums.UserType
     createdAt: Date
     updatedAt: Date
@@ -1388,6 +1395,7 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     picture?: boolean
+    tenantId?: boolean
     role?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1401,6 +1409,7 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     picture?: boolean
+    tenantId?: boolean
     role?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1411,6 +1420,7 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     picture?: boolean
+    tenantId?: boolean
     role?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -1421,12 +1431,13 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     picture?: boolean
+    tenantId?: boolean
     role?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "picture" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "picture" | "tenantId" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     enrollment?: boolean | User$enrollmentArgs<ExtArgs>
     orders?: boolean | User$ordersArgs<ExtArgs>
@@ -1446,6 +1457,7 @@ export namespace Prisma {
       name: string
       email: string
       picture: string | null
+      tenantId: string
       role: $Enums.UserType
       createdAt: Date
       updatedAt: Date
@@ -1878,6 +1890,7 @@ export namespace Prisma {
     readonly name: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly picture: FieldRef<"User", 'String'>
+    readonly tenantId: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserType'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
@@ -2499,7 +2512,7 @@ export namespace Prisma {
     courseId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["enrollment"]>
 
   export type EnrollmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2508,7 +2521,7 @@ export namespace Prisma {
     courseId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["enrollment"]>
 
   export type EnrollmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2517,7 +2530,7 @@ export namespace Prisma {
     courseId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["enrollment"]>
 
   export type EnrollmentSelectScalar = {
@@ -2530,19 +2543,19 @@ export namespace Prisma {
 
   export type EnrollmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "courseId" | "createdAt" | "updatedAt", ExtArgs["result"]["enrollment"]>
   export type EnrollmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type EnrollmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type EnrollmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $EnrollmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Enrollment"
     objects: {
-      User: Prisma.$UserPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2944,7 +2957,7 @@ export namespace Prisma {
    */
   export interface Prisma__EnrollmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4492,6 +4505,7 @@ export namespace Prisma {
     amount: string | null
     currency: string | null
     receipt: string | null
+    status: $Enums.OrderStatus | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
@@ -4504,6 +4518,7 @@ export namespace Prisma {
     amount: string | null
     currency: string | null
     receipt: string | null
+    status: $Enums.OrderStatus | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
@@ -4516,6 +4531,7 @@ export namespace Prisma {
     amount: number
     currency: number
     receipt: number
+    status: number
     createdAt: number
     updatedAt: number
     userId: number
@@ -4530,6 +4546,7 @@ export namespace Prisma {
     amount?: true
     currency?: true
     receipt?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -4542,6 +4559,7 @@ export namespace Prisma {
     amount?: true
     currency?: true
     receipt?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -4554,6 +4572,7 @@ export namespace Prisma {
     amount?: true
     currency?: true
     receipt?: true
+    status?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -4639,6 +4658,7 @@ export namespace Prisma {
     amount: string
     currency: string
     receipt: string
+    status: $Enums.OrderStatus
     createdAt: Date
     updatedAt: Date
     userId: string | null
@@ -4668,10 +4688,11 @@ export namespace Prisma {
     amount?: boolean
     currency?: boolean
     receipt?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    User?: boolean | Order$UserArgs<ExtArgs>
+    user?: boolean | Order$userArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4681,10 +4702,11 @@ export namespace Prisma {
     amount?: boolean
     currency?: boolean
     receipt?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    User?: boolean | Order$UserArgs<ExtArgs>
+    user?: boolean | Order$userArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4694,10 +4716,11 @@ export namespace Prisma {
     amount?: boolean
     currency?: boolean
     receipt?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    User?: boolean | Order$UserArgs<ExtArgs>
+    user?: boolean | Order$userArgs<ExtArgs>
   }, ExtArgs["result"]["order"]>
 
   export type OrderSelectScalar = {
@@ -4707,26 +4730,27 @@ export namespace Prisma {
     amount?: boolean
     currency?: boolean
     receipt?: boolean
+    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
   }
 
-  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "courseId" | "amount" | "currency" | "receipt" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["order"]>
+  export type OrderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orderId" | "courseId" | "amount" | "currency" | "receipt" | "status" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["order"]>
   export type OrderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | Order$UserArgs<ExtArgs>
+    user?: boolean | Order$userArgs<ExtArgs>
   }
   export type OrderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | Order$UserArgs<ExtArgs>
+    user?: boolean | Order$userArgs<ExtArgs>
   }
   export type OrderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    User?: boolean | Order$UserArgs<ExtArgs>
+    user?: boolean | Order$userArgs<ExtArgs>
   }
 
   export type $OrderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Order"
     objects: {
-      User: Prisma.$UserPayload<ExtArgs> | null
+      user: Prisma.$UserPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4735,6 +4759,7 @@ export namespace Prisma {
       amount: string
       currency: string
       receipt: string
+      status: $Enums.OrderStatus
       createdAt: Date
       updatedAt: Date
       userId: string | null
@@ -5132,7 +5157,7 @@ export namespace Prisma {
    */
   export interface Prisma__OrderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    User<T extends Order$UserArgs<ExtArgs> = {}>(args?: Subset<T, Order$UserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    user<T extends Order$userArgs<ExtArgs> = {}>(args?: Subset<T, Order$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5168,6 +5193,7 @@ export namespace Prisma {
     readonly amount: FieldRef<"Order", 'String'>
     readonly currency: FieldRef<"Order", 'String'>
     readonly receipt: FieldRef<"Order", 'String'>
+    readonly status: FieldRef<"Order", 'OrderStatus'>
     readonly createdAt: FieldRef<"Order", 'DateTime'>
     readonly updatedAt: FieldRef<"Order", 'DateTime'>
     readonly userId: FieldRef<"Order", 'String'>
@@ -5567,9 +5593,9 @@ export namespace Prisma {
   }
 
   /**
-   * Order.User
+   * Order.user
    */
-  export type Order$UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Order$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the User
      */
@@ -5623,6 +5649,7 @@ export namespace Prisma {
     name: 'name',
     email: 'email',
     picture: 'picture',
+    tenantId: 'tenantId',
     role: 'role',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -5667,6 +5694,7 @@ export namespace Prisma {
     amount: 'amount',
     currency: 'currency',
     receipt: 'receipt',
+    status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     userId: 'userId'
@@ -5747,6 +5775,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'OrderStatus'
+   */
+  export type EnumOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrderStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'OrderStatus[]'
+   */
+  export type ListEnumOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrderStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -5771,6 +5813,7 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     picture?: StringNullableFilter<"User"> | string | null
+    tenantId?: StringFilter<"User"> | string
     role?: EnumUserTypeFilter<"User"> | $Enums.UserType
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
@@ -5783,6 +5826,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     picture?: SortOrderInput | SortOrder
+    tenantId?: SortOrder
     role?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -5793,6 +5837,7 @@ export namespace Prisma {
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     email?: string
+    tenantId?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
@@ -5803,13 +5848,14 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     enrollment?: EnrollmentListRelationFilter
     orders?: OrderListRelationFilter
-  }, "id" | "email">
+  }, "id" | "email" | "tenantId">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
     picture?: SortOrderInput | SortOrder
+    tenantId?: SortOrder
     role?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -5826,6 +5872,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     picture?: StringNullableWithAggregatesFilter<"User"> | string | null
+    tenantId?: StringWithAggregatesFilter<"User"> | string
     role?: EnumUserTypeWithAggregatesFilter<"User"> | $Enums.UserType
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -5840,7 +5887,7 @@ export namespace Prisma {
     courseId?: StringFilter<"Enrollment"> | string
     createdAt?: DateTimeFilter<"Enrollment"> | Date | string
     updatedAt?: DateTimeFilter<"Enrollment"> | Date | string
-    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type EnrollmentOrderByWithRelationInput = {
@@ -5849,11 +5896,12 @@ export namespace Prisma {
     courseId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    User?: UserOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type EnrollmentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    userId_courseId?: EnrollmentUserIdCourseIdCompoundUniqueInput
     AND?: EnrollmentWhereInput | EnrollmentWhereInput[]
     OR?: EnrollmentWhereInput[]
     NOT?: EnrollmentWhereInput | EnrollmentWhereInput[]
@@ -5861,8 +5909,8 @@ export namespace Prisma {
     courseId?: StringFilter<"Enrollment"> | string
     createdAt?: DateTimeFilter<"Enrollment"> | Date | string
     updatedAt?: DateTimeFilter<"Enrollment"> | Date | string
-    User?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId_courseId">
 
   export type EnrollmentOrderByWithAggregationInput = {
     id?: SortOrder
@@ -5983,10 +6031,11 @@ export namespace Prisma {
     amount?: StringFilter<"Order"> | string
     currency?: StringFilter<"Order"> | string
     receipt?: StringFilter<"Order"> | string
+    status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
     userId?: StringNullableFilter<"Order"> | string | null
-    User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
   }
 
   export type OrderOrderByWithRelationInput = {
@@ -5996,15 +6045,17 @@ export namespace Prisma {
     amount?: SortOrder
     currency?: SortOrder
     receipt?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrderInput | SortOrder
-    User?: UserOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type OrderWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     orderId?: string
+    userId_courseId?: OrderUserIdCourseIdCompoundUniqueInput
     AND?: OrderWhereInput | OrderWhereInput[]
     OR?: OrderWhereInput[]
     NOT?: OrderWhereInput | OrderWhereInput[]
@@ -6012,11 +6063,12 @@ export namespace Prisma {
     amount?: StringFilter<"Order"> | string
     currency?: StringFilter<"Order"> | string
     receipt?: StringFilter<"Order"> | string
+    status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
     userId?: StringNullableFilter<"Order"> | string | null
-    User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-  }, "id" | "orderId">
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }, "id" | "orderId" | "userId_courseId">
 
   export type OrderOrderByWithAggregationInput = {
     id?: SortOrder
@@ -6025,6 +6077,7 @@ export namespace Prisma {
     amount?: SortOrder
     currency?: SortOrder
     receipt?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrderInput | SortOrder
@@ -6043,6 +6096,7 @@ export namespace Prisma {
     amount?: StringWithAggregatesFilter<"Order"> | string
     currency?: StringWithAggregatesFilter<"Order"> | string
     receipt?: StringWithAggregatesFilter<"Order"> | string
+    status?: EnumOrderStatusWithAggregatesFilter<"Order"> | $Enums.OrderStatus
     createdAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
     userId?: StringNullableWithAggregatesFilter<"Order"> | string | null
@@ -6053,6 +6107,7 @@ export namespace Prisma {
     name: string
     email: string
     picture?: string | null
+    tenantId: string
     role?: $Enums.UserType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -6065,6 +6120,7 @@ export namespace Prisma {
     name: string
     email: string
     picture?: string | null
+    tenantId: string
     role?: $Enums.UserType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -6077,6 +6133,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     picture?: NullableStringFieldUpdateOperationsInput | string | null
+    tenantId?: StringFieldUpdateOperationsInput | string
     role?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6089,6 +6146,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     picture?: NullableStringFieldUpdateOperationsInput | string | null
+    tenantId?: StringFieldUpdateOperationsInput | string
     role?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6101,6 +6159,7 @@ export namespace Prisma {
     name: string
     email: string
     picture?: string | null
+    tenantId: string
     role?: $Enums.UserType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -6111,6 +6170,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     picture?: NullableStringFieldUpdateOperationsInput | string | null
+    tenantId?: StringFieldUpdateOperationsInput | string
     role?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6121,6 +6181,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     picture?: NullableStringFieldUpdateOperationsInput | string | null
+    tenantId?: StringFieldUpdateOperationsInput | string
     role?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -6131,7 +6192,7 @@ export namespace Prisma {
     courseId: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    User: UserCreateNestedOneWithoutEnrollmentInput
+    user: UserCreateNestedOneWithoutEnrollmentInput
   }
 
   export type EnrollmentUncheckedCreateInput = {
@@ -6147,7 +6208,7 @@ export namespace Prisma {
     courseId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    User?: UserUpdateOneRequiredWithoutEnrollmentNestedInput
+    user?: UserUpdateOneRequiredWithoutEnrollmentNestedInput
   }
 
   export type EnrollmentUncheckedUpdateInput = {
@@ -6293,9 +6354,10 @@ export namespace Prisma {
     amount: string
     currency?: string
     receipt: string
+    status?: $Enums.OrderStatus
     createdAt?: Date | string
     updatedAt?: Date | string
-    User?: UserCreateNestedOneWithoutOrdersInput
+    user?: UserCreateNestedOneWithoutOrdersInput
   }
 
   export type OrderUncheckedCreateInput = {
@@ -6305,6 +6367,7 @@ export namespace Prisma {
     amount: string
     currency?: string
     receipt: string
+    status?: $Enums.OrderStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     userId?: string | null
@@ -6317,9 +6380,10 @@ export namespace Prisma {
     amount?: StringFieldUpdateOperationsInput | string
     currency?: StringFieldUpdateOperationsInput | string
     receipt?: StringFieldUpdateOperationsInput | string
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    User?: UserUpdateOneWithoutOrdersNestedInput
+    user?: UserUpdateOneWithoutOrdersNestedInput
   }
 
   export type OrderUncheckedUpdateInput = {
@@ -6329,6 +6393,7 @@ export namespace Prisma {
     amount?: StringFieldUpdateOperationsInput | string
     currency?: StringFieldUpdateOperationsInput | string
     receipt?: StringFieldUpdateOperationsInput | string
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6341,6 +6406,7 @@ export namespace Prisma {
     amount: string
     currency?: string
     receipt: string
+    status?: $Enums.OrderStatus
     createdAt?: Date | string
     updatedAt?: Date | string
     userId?: string | null
@@ -6353,6 +6419,7 @@ export namespace Prisma {
     amount?: StringFieldUpdateOperationsInput | string
     currency?: StringFieldUpdateOperationsInput | string
     receipt?: StringFieldUpdateOperationsInput | string
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6364,6 +6431,7 @@ export namespace Prisma {
     amount?: StringFieldUpdateOperationsInput | string
     currency?: StringFieldUpdateOperationsInput | string
     receipt?: StringFieldUpdateOperationsInput | string
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -6447,6 +6515,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     picture?: SortOrder
+    tenantId?: SortOrder
     role?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -6457,6 +6526,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     picture?: SortOrder
+    tenantId?: SortOrder
     role?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -6467,6 +6537,7 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     picture?: SortOrder
+    tenantId?: SortOrder
     role?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -6535,6 +6606,11 @@ export namespace Prisma {
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
+  }
+
+  export type EnrollmentUserIdCourseIdCompoundUniqueInput = {
+    userId: string
+    courseId: string
   }
 
   export type EnrollmentCountOrderByAggregateInput = {
@@ -6612,9 +6688,21 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type EnumOrderStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.OrderStatus | EnumOrderStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.OrderStatus[] | ListEnumOrderStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.OrderStatus[] | ListEnumOrderStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumOrderStatusFilter<$PrismaModel> | $Enums.OrderStatus
+  }
+
   export type UserNullableScalarRelationFilter = {
     is?: UserWhereInput | null
     isNot?: UserWhereInput | null
+  }
+
+  export type OrderUserIdCourseIdCompoundUniqueInput = {
+    userId: string
+    courseId: string
   }
 
   export type OrderCountOrderByAggregateInput = {
@@ -6624,6 +6712,7 @@ export namespace Prisma {
     amount?: SortOrder
     currency?: SortOrder
     receipt?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -6636,6 +6725,7 @@ export namespace Prisma {
     amount?: SortOrder
     currency?: SortOrder
     receipt?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -6648,9 +6738,20 @@ export namespace Prisma {
     amount?: SortOrder
     currency?: SortOrder
     receipt?: SortOrder
+    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+  }
+
+  export type EnumOrderStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.OrderStatus | EnumOrderStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.OrderStatus[] | ListEnumOrderStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.OrderStatus[] | ListEnumOrderStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumOrderStatusWithAggregatesFilter<$PrismaModel> | $Enums.OrderStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumOrderStatusFilter<$PrismaModel>
+    _max?: NestedEnumOrderStatusFilter<$PrismaModel>
   }
 
   export type EnrollmentCreateNestedManyWithoutUserInput = {
@@ -6780,6 +6881,10 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutOrdersInput, UserUncheckedCreateWithoutOrdersInput>
     connectOrCreate?: UserCreateOrConnectWithoutOrdersInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type EnumOrderStatusFieldUpdateOperationsInput = {
+    set?: $Enums.OrderStatus
   }
 
   export type UserUpdateOneWithoutOrdersNestedInput = {
@@ -6918,6 +7023,23 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedEnumOrderStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.OrderStatus | EnumOrderStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.OrderStatus[] | ListEnumOrderStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.OrderStatus[] | ListEnumOrderStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumOrderStatusFilter<$PrismaModel> | $Enums.OrderStatus
+  }
+
+  export type NestedEnumOrderStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.OrderStatus | EnumOrderStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.OrderStatus[] | ListEnumOrderStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.OrderStatus[] | ListEnumOrderStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumOrderStatusWithAggregatesFilter<$PrismaModel> | $Enums.OrderStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumOrderStatusFilter<$PrismaModel>
+    _max?: NestedEnumOrderStatusFilter<$PrismaModel>
+  }
+
   export type EnrollmentCreateWithoutUserInput = {
     id?: string
     courseId: string
@@ -6949,6 +7071,7 @@ export namespace Prisma {
     amount: string
     currency?: string
     receipt: string
+    status?: $Enums.OrderStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -6960,6 +7083,7 @@ export namespace Prisma {
     amount: string
     currency?: string
     receipt: string
+    status?: $Enums.OrderStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7027,6 +7151,7 @@ export namespace Prisma {
     amount?: StringFilter<"Order"> | string
     currency?: StringFilter<"Order"> | string
     receipt?: StringFilter<"Order"> | string
+    status?: EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
     createdAt?: DateTimeFilter<"Order"> | Date | string
     updatedAt?: DateTimeFilter<"Order"> | Date | string
     userId?: StringNullableFilter<"Order"> | string | null
@@ -7037,6 +7162,7 @@ export namespace Prisma {
     name: string
     email: string
     picture?: string | null
+    tenantId: string
     role?: $Enums.UserType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7048,6 +7174,7 @@ export namespace Prisma {
     name: string
     email: string
     picture?: string | null
+    tenantId: string
     role?: $Enums.UserType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7075,6 +7202,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     picture?: NullableStringFieldUpdateOperationsInput | string | null
+    tenantId?: StringFieldUpdateOperationsInput | string
     role?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7086,6 +7214,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     picture?: NullableStringFieldUpdateOperationsInput | string | null
+    tenantId?: StringFieldUpdateOperationsInput | string
     role?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7097,6 +7226,7 @@ export namespace Prisma {
     name: string
     email: string
     picture?: string | null
+    tenantId: string
     role?: $Enums.UserType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7108,6 +7238,7 @@ export namespace Prisma {
     name: string
     email: string
     picture?: string | null
+    tenantId: string
     role?: $Enums.UserType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -7135,6 +7266,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     picture?: NullableStringFieldUpdateOperationsInput | string | null
+    tenantId?: StringFieldUpdateOperationsInput | string
     role?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7146,6 +7278,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     picture?: NullableStringFieldUpdateOperationsInput | string | null
+    tenantId?: StringFieldUpdateOperationsInput | string
     role?: EnumUserTypeFieldUpdateOperationsInput | $Enums.UserType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -7166,6 +7299,7 @@ export namespace Prisma {
     amount: string
     currency?: string
     receipt: string
+    status?: $Enums.OrderStatus
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7198,6 +7332,7 @@ export namespace Prisma {
     amount?: StringFieldUpdateOperationsInput | string
     currency?: StringFieldUpdateOperationsInput | string
     receipt?: StringFieldUpdateOperationsInput | string
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7209,6 +7344,7 @@ export namespace Prisma {
     amount?: StringFieldUpdateOperationsInput | string
     currency?: StringFieldUpdateOperationsInput | string
     receipt?: StringFieldUpdateOperationsInput | string
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7220,6 +7356,7 @@ export namespace Prisma {
     amount?: StringFieldUpdateOperationsInput | string
     currency?: StringFieldUpdateOperationsInput | string
     receipt?: StringFieldUpdateOperationsInput | string
+    status?: EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

@@ -13,13 +13,10 @@ import { IndianRupee } from "lucide-react";
 import { purchaseCourse } from "@/dal/actions";
 import Script from "next/script";
 
-// const { RAZOR_API_ID, RAZOR_API_SECRET } = process.env;
-// console.log(" RAZOR_API_ID", RAZOR_API_ID);
-
 type EnrollBtnProps = {
   courseTitle: string;
   courseId: string;
-  courseAmount: number;
+  courseAmount: string;
 };
 export default function EnrollBtn({
   courseId,
@@ -29,23 +26,27 @@ export default function EnrollBtn({
   // console.log("cid", courseId);
   async function handleOrder() {
     try {
-      const result = await purchaseCourse({
-        amount: courseAmount,
+      const purchaseOptions = {
+        courseId: courseId,
+        amount: courseAmount.toString(),
         courseTitle: courseTitle,
-      });
+      };
+      const result = await purchaseCourse(purchaseOptions);
       // console.log("client-res", JSON.stringify(result));
       if (!result?.order?.id) {
         alert("Failed to create order");
         return;
       }
+
       const options = {
         key: "rzp_test_9hemX97P9JpPzr",
-        amount: result.order.amount,
+        amount: Number(result.order.amount) * 100,
         currency: result.order.currency,
         name: "Course Enrollment",
         description: courseTitle,
         order_id: result.order.id,
         handler: function (response: any) {
+          // console.log("razor-pay-res", response);
           alert(
             `Payment successful! Payment ID: ${response.razorpay_payment_id}`
           );

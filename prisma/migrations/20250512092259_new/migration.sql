@@ -10,6 +10,7 @@ CREATE TABLE "User" (
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "picture" TEXT,
+    "tenantId" TEXT NOT NULL,
     "role" "UserType" NOT NULL DEFAULT 'USER',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -54,6 +55,7 @@ CREATE TABLE "Order" (
     "amount" TEXT NOT NULL,
     "currency" TEXT NOT NULL DEFAULT 'INR',
     "receipt" TEXT NOT NULL,
+    "status" "OrderStatus" NOT NULL DEFAULT 'PENDING',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "userId" TEXT,
@@ -65,10 +67,16 @@ CREATE TABLE "Order" (
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "User_tenantId_key" ON "User"("tenantId");
+
+-- CreateIndex
 CREATE INDEX "User_email_idx" ON "User"("email");
 
 -- CreateIndex
 CREATE INDEX "Enrollment_userId_idx" ON "Enrollment"("userId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Enrollment_userId_courseId_key" ON "Enrollment"("userId", "courseId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Course_title_key" ON "Course"("title");
@@ -79,8 +87,11 @@ CREATE UNIQUE INDEX "Order_orderId_key" ON "Order"("orderId");
 -- CreateIndex
 CREATE INDEX "Order_orderId_courseId_idx" ON "Order"("orderId", "courseId");
 
--- AddForeignKey
-ALTER TABLE "Enrollment" ADD CONSTRAINT "Enrollment_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+-- CreateIndex
+CREATE UNIQUE INDEX "Order_userId_courseId_key" ON "Order"("userId", "courseId");
 
 -- AddForeignKey
-ALTER TABLE "Order" ADD CONSTRAINT "Order_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Enrollment" ADD CONSTRAINT "Enrollment_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("tenantId") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Order" ADD CONSTRAINT "Order_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("tenantId") ON DELETE CASCADE ON UPDATE CASCADE;

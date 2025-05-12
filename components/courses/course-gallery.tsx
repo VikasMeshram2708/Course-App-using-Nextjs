@@ -3,6 +3,7 @@ import { TimerIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import EnrollBtn from "./enroll-btn";
+import { Course } from "@/types";
 
 export default function CourseGallery({ course }: { course: Course }) {
   return (
@@ -35,7 +36,7 @@ export default function CourseGallery({ course }: { course: Course }) {
           <EnrollBtn
             courseTitle={course?.title}
             courseId={course?.id}
-            courseAmount={50000}
+            courseAmount={course?.price}
           />
         </div>
       </CardContent>

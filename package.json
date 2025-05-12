@@ -11,7 +11,7 @@
     "db:mig": "prisma migrate dev",
     "db:stu": "prisma studio",
     "postinstall": "prisma generate",
-    "db:seed":"tsx ./prisma/seed.ts"
+    "db:seed": "tsx ./prisma/seed.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

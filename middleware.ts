@@ -3,7 +3,7 @@ import { NextRequest } from "next/server";
 
 export default withAuth(async function middleware(req: NextRequest) {}, {
   // Middleware still runs on all routes, but doesn't protect the blog route
-  publicPaths: ["/"],
+  publicPaths: ["/", "/api/webhook/razorpay"],
 });
 
 export const config = {
