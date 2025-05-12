@@ -6,11 +6,16 @@
 
 ### ToDo
 
+- [] Create an API to get the list of purchased courses and list them.
+- [] If the course is already purchase it should show purchases instead of Enroll.
+
 - [ ] Change the SEO on layout
+
 - [x] Add Breadcrumbs
 - [x] Add Search Bar with debounce functionality
 - [x] Add Attribution of the Creator
 - [x] Add Footer
+
 - [ ] Dashboard
 - [ ] Course Enroll Feature
 - [ ] Show Enrolled Courses on Dashboard

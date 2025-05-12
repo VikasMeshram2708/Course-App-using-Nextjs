@@ -6,14 +6,12 @@ import { purchaseCourseSchema, PurchaseCourseSchema } from "@/models";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export async function purchaseCourse(data: PurchaseCourseSchema) {
-  // Auth
   const { isAuthenticated, getUser } = getKindeServerSession();
 
   if (!(await isAuthenticated())) {
     throw new Error("Unauthorized");
   }
 
-  // Sanitize the incoming data
   const parsed = purchaseCourseSchema.safeParse(data);
   if (!parsed.success) {
     const err = parsed.error.flatten().fieldErrors;
@@ -28,8 +26,8 @@ export async function purchaseCourse(data: PurchaseCourseSchema) {
   const { amount, courseId, courseTitle } = parsed.data;
 
   try {
-    // find user if not exists store it
     const user = await getUser();
+
     // Upsert user
     await prisma.user.upsert({
       where: { tenantId: user?.id ?? "" },
@@ -47,11 +45,40 @@ export async function purchaseCourse(data: PurchaseCourseSchema) {
       },
     });
 
-    // Create Order
+    // Check if the user already has an order for this course
+    const existingOrder = await prisma.order.findFirst({
+      where: {
+        userId: user?.id,
+        courseId: courseId,
+      },
+    });
+
+    if (existingOrder) {
+      if (existingOrder.status === "PAID") {
+        return {
+          success: false,
+          message: "You have already purchased this course.",
+        };
+      } else {
+        // Optionally return the pending Razorpay order again
+        return {
+          success: true,
+          message: "Pending order found",
+          order: {
+            id: existingOrder.orderId,
+            amount: existingOrder.amount,
+            currency: existingOrder.currency,
+            receipt: existingOrder.receipt,
+          },
+        };
+      }
+    }
+
+    // Create Razorpay order
     const timestamp = Date.now();
     const receipt = `order_receipt_${timestamp}`;
     const orderResult = await razorInstance.orders.create({
-      amount: amount,
+      amount: amount, // amount in paise (e.g., 50000 = ₹500)
       currency: "INR",
       receipt,
       notes: {
@@ -59,35 +86,31 @@ export async function purchaseCourse(data: PurchaseCourseSchema) {
       },
     });
 
+    // Save order to DB
     await prisma.order.create({
       data: {
         amount: amount,
-        courseId: courseId,
+        courseId,
         orderId: orderResult.id,
-        receipt: receipt,
+        receipt,
         currency: "INR",
         userId: user?.id,
         status: "PENDING",
       },
     });
 
-    // Store the enrollment
-    // await prisma.enrollment.create({
-    //   data: {
-    //     courseId: courseId ?? "",
-    //     userId: user?.id ?? "",
-    //   },
-    // });
-
     return {
       success: true,
-      message: "Course Purchased",
+      message: "Course purchase initiated",
       order: orderResult,
     };
   } catch (e) {
     console.error(e);
-    throw new Error(
-      (e as Error).message ?? "Something went wrong. Failed to store user."
-    );
+    return {
+      success: false,
+      message:
+        (e as Error).message ??
+        "Something went wrong. Failed to purchase course.",
+    };
   }
 }
