@@ -69,7 +69,6 @@ export default function EnrollBtn({
   }
   return (
     <div>
-      <Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
       <Dialog>
         <DialogTrigger asChild>
           <Button variant={"secondary"}>Enroll</Button>

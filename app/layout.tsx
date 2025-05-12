@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import Footer from "@/components/footer";
 import { AuthProvider } from "./context/auth-provider";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,6 +49,7 @@ export default function RootLayout({
 }>) {
   return (
     <AuthProvider>
+      <Script src="https://checkout.razorpay.com/v1/checkout.js"></Script>
       <html lang="en" suppressHydrationWarning>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased relative min-h-screen flex flex-col`}
