@@ -78,7 +78,7 @@ export async function purchaseCourse(data: PurchaseCourseSchema) {
     const timestamp = Date.now();
     const receipt = `order_receipt_${timestamp}`;
     const orderResult = await razorInstance.orders.create({
-      amount: amount, // amount in paise (e.g., 50000 = ₹500)
+      amount: Number(amount) * 100, // amount in paise (e.g., 50000 = ₹500)
       currency: "INR",
       receipt,
       notes: {

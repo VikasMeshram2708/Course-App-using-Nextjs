@@ -8,7 +8,7 @@ export function Hero() {
       <div className="text-center">
         {/* Badge */}
         <span className="inline-block text-black px-4 py-2 mb-6 rounded-full bg-gray-100 text-sm font-medium border border-gray-200">
-          🚀 No Signups • No Payments
+          🎓 Structured Learning • Curated Video Courses
         </span>
 
         {/* Headline */}
@@ -24,23 +24,23 @@ export function Hero() {
 
         {/* Subhead */}
         <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-10">
-          Only the most effective free courses – filtered by industry pros so
-          you {"don't"}waste time on fluff.
+          Get expertly curated, Creative Commons-based video courses—structured
+          for serious learners who want clarity without the clutter.
         </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-4 mb-14">
           <Button
-            size={"lg"}
+            size="lg"
             className="rounded cursor-pointer"
-            variant={"outline"}
+            variant="outline"
           >
             <Link href="/courses">
               Browse Courses
               <span className="ml-2">→</span>
             </Link>
           </Button>
-          <Button size={"lg"} className="rounded cursor-pointer">
+          <Button size="lg" className="rounded cursor-pointer">
             Why Our Picks?
           </Button>
         </div>

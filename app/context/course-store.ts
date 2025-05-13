@@ -1,25 +1,18 @@
-// import { Course } from "@/types";
 // import { create } from "zustand";
 
 // interface CourseResponse {
-//   meta: {
-//     data: Course[];
-//     total: number;
-//   };
+//   isPurchasedCourse: boolean;
 // }
 // type CourseProps = {
-//   getCourses: () => Promise<CourseResponse>;
+//   isPurchasedCourse: () => boolean;
 // };
 // export const courseStore = create<CourseProps>(() => ({
-//   getCourses: async () => {
+//   isPurchasedCourse: async (courseId:string) => {
 //     try {
-//       const response = await fetch("/api/courses");
-//       if (!response.ok) {
-//         throw new Error("Failed to fetch the courses");
-//       }
-//       return response.json();
+//         const result =
 //     } catch (e) {
-//       console.error(
+//       console.error(e);
+//       throw new Error(
 //         (e as Error).message ?? "Something went wrong. Please try again."
 //       );
 //     }

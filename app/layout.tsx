@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
-import Footer from "@/components/footer";
 import { AuthProvider } from "./context/auth-provider";
 import Script from "next/script";
 
@@ -18,22 +16,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Master Skills Online with Free & Curated Video Courses",
+  title: "ClipCourse – Structured Video Courses from CC Content",
   description:
-    "Discover high-quality video courses across tech, business, design & more — curated from YouTube, ad-free, and ready to learn at your own pace.",
+    "ClipCourse offers curated online courses built from Creative Commons YouTube videos. Pay once and learn with structured, legal, high-quality content.",
   keywords: [
-    "free online courses",
-    "curated video courses",
-    "creative commons learning",
-    "skill development 2025",
-    "youtube course platform",
-    "learn new skills",
-    "online learning",
-    "ad-free education",
-    "self-paced courses",
-    "tech courses",
-    "design tutorials",
-    "business training online",
+    "Creative Commons courses",
+    "paid online courses",
+    "curated YouTube lessons",
+    "structured video learning",
+    "CC video education",
+    "ClipCourse",
+    "legal video courses",
+    "reusable content courses",
+    "learn with YouTube",
+    "premium learning paths",
   ],
   openGraph: {
     title: "Master Skills Online with Free & Curated Video Courses",
@@ -60,11 +56,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <main className="flex-1">
-              <Navbar />
-              {children}
-              <Footer />
-            </main>
+            <main className="flex-1">{children}</main>
           </ThemeProvider>
         </body>
       </html>

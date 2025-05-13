@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         hostname: "i.ytimg.com",
         protocol: "https",
       },
+      {
+        hostname: "placehold.co",
+        protocol: "https",
+      },
     ],
   },
 };

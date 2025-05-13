@@ -10,7 +10,6 @@ import {
 } from "../ui/dialog";
 import { IndianRupee } from "lucide-react";
 import { purchaseCourse } from "@/dal/actions";
-import Script from "next/script";
 
 type EnrollBtnProps = {
   courseTitle: string;
@@ -39,7 +38,7 @@ export default function EnrollBtn({
 
       const options = {
         key: "rzp_test_9hemX97P9JpPzr",
-        amount: Number(result.order.amount) * 100,
+        amount: result.order.amount,
         currency: result.order.currency,
         name: "Course Enrollment",
         description: courseTitle,

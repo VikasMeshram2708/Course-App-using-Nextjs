@@ -59,7 +59,7 @@ export async function Navbar() {
             <DropdownMenuContent>
               <DropdownMenuLabel>Welcome Back</DropdownMenuLabel>
               <DropdownMenuItem className="cursor-pointer">
-                Dashboard
+                <Link href="/dashboard">Dashboard</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <LogoutLink className="flex items-center gap-2">

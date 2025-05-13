@@ -1,6 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TimerIcon } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
 import EnrollBtn from "./enroll-btn";
 import { Course } from "@/types";
@@ -20,12 +19,7 @@ export default function CourseGallery({ course }: { course: Course }) {
       <CardContent className="p-5 space-y-4">
         <div className="flex items-start justify-between">
           <CardTitle className="line-clamp-1 md:line-clamp-none">
-            <Link
-              href={`/courses/${course?.id}`}
-              className="hover:underline text-foreground transition-colors"
-            >
-              {course.title}
-            </Link>
+            {course.title}
           </CardTitle>
         </div>
         <div className="flex items-center gap-2 text-sm justify-between">
